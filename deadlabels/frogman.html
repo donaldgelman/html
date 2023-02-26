@@ -1,8 +1,19 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="/css/dl.css">
 <style>
 body {
 	background-color: black;
+}
+#bottombar {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  padding: 10px;
+  display: inline;
 }
 a:link {
   color: green;
@@ -18,6 +29,9 @@ li {
 }
 </style>
 <body>
+<div class=header>
+	<a href="/deadlabels"><<</a>
+</div>
 <ul>
 	<li><a href="https://www.discogs.com/release/113703-Quadra-Sketch-From-A-Moment">Quadra - Spell of Rain</a></li>
         <li><a href="https://www.discogs.com/release/1079348-Hirofumi-Goto-Geo-Rhythm">Hirofumi Goto - OKOSO Zukin Type-B</a></li>
@@ -37,11 +51,11 @@ li {
 <div>
 	<video width="800" height="200" style="background-color: black;" controls>
         <source
-          src="/dl/media/Frogman.mp3"
+          src="/deadlabels/media/Frogman.mp3"
           type="audio/mp3"
         />
         <track
-          src="/dl/media/frogman_playlist.vtt"
+          src="/deadlabels/media/frogman_playlist.vtt"
           label="English subtitle"
           kind="subtitles"
           srclang="en-us"

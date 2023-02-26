@@ -1,10 +1,23 @@
 <!DOCTYPE html>
 <html>
+<head>
 <style>
 * {
   box-sizing: border-box;
 }
-
+#bottombar {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  padding: 10px;
+  display: inline;
+}
+#bottombar a {
+  color: green;
+}
 body {
   background-color: black;
   margin: 0;
@@ -57,6 +70,7 @@ body {
   }
 }
 </style>
+</head>
 <body>
 
 <!-- Header -->
@@ -64,20 +78,24 @@ body {
 <!-- Photo Grid -->
 <div class="row"> 
   <div class="column">
-    <a href="/dl/ambivalence.html"><img src="/dl/media/front_squares/FrontA.jpg" style="width:50%"></a>
-    <a href="/dl/elfcut.html"><img src="/dl/media/front_squares/FrontE.jpg" style="width:50%"></a>
+    <a href="/deadlabels/ambivalence.html"><img src="/deadlabels/media/front_squares/FrontA.jpg" style="width:50%"></a>
+    <a href="/deadlabels/elfcut.html"><img src="/deadlabels/media/front_squares/FrontE.jpg" style="width:50%"></a>
   </div>
   <div class="column">
-    <a href="/dl/beaumonde.html"><img src="/dl/media/front_squares/FrontB.jpg" style="width:50%"></a>
-    <a href="/dl/frogman.html"><img src="/dl/media/front_squares/FrontF.jpg" style="width:50%"></a>
+    <a href="/deadlabels/beaumonde.html"><img src="/deadlabels/media/front_squares/FrontB.jpg" style="width:50%"></a>
+    <a href="/deadlabels/frogman.html"><img src="/deadlabels/media/front_squares/FrontF.jpg" style="width:50%"></a>
   </div>  
   <div class="column">
-    <a href="/dl/clear.html"><img src="/dl/media/front_squares/FrontC.jpg" style="width:50%"></a>
-    <a href="/dl/gneiss.html"><img src="dl/media/front_squares/FrontG.jpg" style="width:50%"></a>
+    <a href="/deadlabels/clear.html"><img src="/deadlabels/media/front_squares/FrontC.jpg" style="width:50%"></a>
+    <a href="/deadlabels/gneiss.html"><img src="/deadlabels/media/front_squares/FrontG.jpg" style="width:50%"></a>
   </div>
   <div class="column">
-    <a href="/dl/defocus.html"><img src="/dl/media/front_squares/FrontD.jpg" style="width:50%"></a>
+    <a href="/deadlabels/defocus.html"><img src="/deadlabels/media/front_squares/FrontD.jpg" style="width:50%"></a>
+    <a href="/deadlabels/hefty.html"><img src="/deadlabels/media/front_squares/FrontH.jpg" style="width:50%"></a>
   </div>
+</div>
+<div id="bottombar">
+	<a href="/index">home</span>
 </div>
 </body>
 </html>

@@ -1,8 +1,20 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="/css/dl.css">
+<meta charset="UTF-8">
 <style>
 body {
 	background-color: black;
+}
+#bottombar {
+  position: fixed;
+  z-index: 100;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  color: white;
+  padding: 10px;
+  display: inline;
 }
 a:link {
   color: green;
@@ -18,6 +30,9 @@ li {
 }
 </style>
 <body>
+<div class=header>
+	<a href="/deadlabels"><<</a>
+</div>
 <ul>
 	<li><a href="https://www.discogs.com/release/1357170-Emeralds-Live">Emeralds - 032208 Cleveland OH</a></li>
 	<li><a href="https://www.discogs.com/release/1332812-Steve-Hauschildt-The-Summit">Steve Hauschildt - Precious Afterthoughts</a></li>
@@ -33,11 +48,11 @@ li {
 <div>
 	<video width="800" height="200" style="background-color: black;" controls>
         <source
-          src="/dl/media/Gneissthings.mp3"
+          src="/deadlabels/media/Gneissthings.mp3"
           type="audio/mp3"
         />
         <track
-          src="/dl/media/gneissthings_playlist.vtt"
+          src="/deadlabels/media/gneissthings_playlist.vtt"
           label="English subtitle"
           kind="subtitles"
           srclang="en-us"

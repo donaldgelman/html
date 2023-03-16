@@ -33,10 +33,9 @@ body {
   <div class="dropdown-content">
     <a href="gallery">gallery</a>
     <a href="quote">quote</a>
-    <a href="pod/aboutpod">p.o.d</a>
     <a href="deadlabels">Dead Labels</a>
-    <a href="search">search</a>
     <a href="glitch">glitch</a>
+    <a href="doors">doors</a>
   </div>
 </div>
 <div><img src="<?php echo $bg ;?>" width="55%" class="center"/></div>

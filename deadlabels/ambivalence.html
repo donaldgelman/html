@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
 <link rel="stylesheet" type="text/css" href="/css/dl.css">
 <meta charset="UTF-8"> 
+<meta name="description" content="All sounds taken from Ambivalence, Brussels, 1999-2011"/>
+<meta property="og:title" content="Dead Labels - Ambivalence"/>
+<meta property="og:image" content="https://pub-de0f53c245634c89944c7a233bfb40cb.r2.dev/front_squares/FrontA.jpg"/>
+<meta property="og:image:type" content="image/jpeg"/>
 <style>
 body {
 	background-color: black;
@@ -33,9 +38,25 @@ li {
 	padding: 12px;
 }
 </style>
+</head>
 <body>
 <div class=header>
 	<a href="/deadlabels"><<</a>
+</div>
+<div>
+	<video width="800" height="200" style="background-color: black;" controls crossorigin="anonymous">
+        <source
+          src="https://pub-de0f53c245634c89944c7a233bfb40cb.r2.dev/Ambivalence.mp3"
+          type="audio/mp3"
+        />
+        <track
+          src=https://pub-de0f53c245634c89944c7a233bfb40cb.r2.dev/vtt/ambivalence_playlist.vtt
+          label="English subtitle"
+          kind="subtitles"
+          srclang="en-us"
+          default
+        />
+    </video>
 </div>
 <ul>
 	<li><a href="https://www.discogs.com/release/859209-Claire-Goldfarb-Or-Propos">Claire Goldfarb - Miroir renversé</a></li>
@@ -62,20 +83,5 @@ li {
         <li><a href="https://www.discogs.com/master/18441-Passarani-Unspeakable-Future-Outbreaks">Passarani - Nul</a></li>
 </ul>
 
-<div>
-	<video width="800" height="200" style="background-color: black;" controls>
-        <source
-          src="https://pub-de0f53c245634c89944c7a233bfb40cb.r2.dev/Ambivalence.mp3"
-          type="audio/mp3"
-        />
-        <track
-          src="https://raw.githubusercontent.com/DonaldGelman/html/main/deadlabels/media/ambivalence_playlist.vtt"
-          label="English subtitle"
-          kind="subtitles"
-          srclang="en-us"
-          default
-        />
-    </video>
-</div>
 </body>
 </html>

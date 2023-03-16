@@ -13,3 +13,5 @@ RewriteRule (.*) $1.php [L]
 
 RewriteCond %{DOCUMENT_ROOT}/$1.html -f
 RewriteRule ^(.*?)/?$ $1.html [L]
+
+Header add Access-Control-Allow-Origin "*"

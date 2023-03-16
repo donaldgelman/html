@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<style>
+.navbar a {
+	    float: left;
+	        font-size: 16px;
+		    color: white;
+		        text-align: center;
+			    padding: 14px 16px;
+			        text-decoration: none;
+}
+
+.dropdown {
+	    float: left;
+	        overflow: hidden;
+}
+
+.dropdown .dropbtn {
+	    font-size: 16px;
+	        border: none;
+		    outline: none;
+		        color: white;
+			    padding: 14px 16px;
+			        background-color: inherit;
+				    font-family: inherit;
+				        margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+	    background-color: red;
+}
+
+.dropdown-content {
+	    display: none;
+	        position: absolute;
+		    background-color: #f9f9f9;
+		        min-width: 160px;
+			    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			        z-index: 1;
+}
+
+.dropdown-content a {
+	    float: none;
+	        color: black;
+		    padding: 12px 16px;
+		        text-decoration: none;
+			    display: block;
+			        text-align: left;
+}
+
+.dropdown-content a:hover {
+	    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	    display: block;
+}
+body {
+	background-color: #32383f;
+	color: white;
+}
+#instructions {
+	position: absolute;
+	left: 300px;
+	top: 300px;
+	color: pink;
+	font-size: 36px;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+img {
+    
+    margin-right:20px;
+    margin-left:20px;
+    width: 65%;
+    height: 65%;
+}
+#bottombar {
+     position: fixed;
+     z-index: 100;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     color:white;
+     padding:10px;
+     display: inline;
+ }
+ #but {
+     background:none;
+     border:none;
+     margin:0;
+     padding:0;
+     cursor: pointer;
+     color: white;
+ }
+ #slider {
+     width:50%;
+ }
+ video {
+    position:center;
+ }
+ ul {
+	list-style-type:none;
+ }
+ li {
+	padding: 15px;
+ }
+</style>
+<head>
+	<script src="/js/doors_vids.js"></script>
+	<script src="js/doors.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+</head>
+<body>
+    <video width="40%" id="myVideo" autoplay loop=false>
+    <source src="" id="mp4Source" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<script type="text/javascript">
+var count=1;
+var player=document.getElementById('myVideo');
+var mp4Vid = document.getElementById('mp4Source');
+player.addEventListener('ended',myHandler,false);
+
+shuffle(vids);
+
+//function loadVideo()
+//{
+//    var video = document.getElementById('myVideo');
+//    //var mp4 = document.getElementById('mp4Source');
+//
+//    mp4Source.src=vids[0];
+//
+//    video.load();
+//    video.play();
+//}
+
+loadVideo();
+
+
+   function myHandler(e)
+   {
+
+      if(!e)
+      {
+         e = window.event;
+      }
+      count++;
+      $(mp4Vid).attr('src', vids[count]);
+      player.load();
+      player.play();
+   }
+
+myVideo.loop=false;
+</script>
+<div>
+	<ul>
+	<!--<li><button onclick="myVideo.play();">play</button><button onclick="myVideo.pause();">pause</button></li>--!>
+		<li style="font-size:20px;">loop <button onclick="myVideo.loop=true">on</button> <button onclick="myVideo.loop=false">off</button></li>
+		<li style="font-size:20px;">filters  <button onclick="vids = mlms01_vids; shuffle(vids); loadVideo();">mlms01</button><button onclick="vids = txfs01_vids.concat(mlms01_vids, tps01_vids); shuffle(vids); loadVideo();">tv</button><button onclick="vids = txfs01_vids; shuffle(vids); loadVideo();">txfs01</button><button onclick="vids = tps01_vids; shuffle(vids); loadVideo();">tps01</button></li>
+	</ul>
+</div>
+</body>
+</html>

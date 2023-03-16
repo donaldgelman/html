@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
+<head>
 <link rel="stylesheet" type="text/css" href="/css/dl.css">
 <meta charset="UTF-8">
+<meta name="description" content="All sounds taken from Hefty Records, Chicago, 1994-2011"/>
+<meta property="og:title" content="Dead Labels - Hefty Records"/>
+<meta property="og:image" content="https://pub-de0f53c245634c89944c7a233bfb40cb.r2.dev/front_squares/FrontH.jpg"/>
+<meta property="og:image:type" content="image/jpeg"/>
 <style>
 body {
 	background-color: black;
@@ -26,9 +31,25 @@ li {
 	padding: 12px;
 }
 </style>
+</head>
 <body>
 <div class=header>
 	<a href="/deadlabels"><<</a>
+</div>
+<div>
+	<video width="800" height="200" style="background-color: black;" controls crossorigin="anonymous">
+        <source
+          src="https://pub-de0f53c245634c89944c7a233bfb40cb.r2.dev/Hefty.mp3"
+          type="audio/mp3"
+        />
+        <track
+          src=https://pub-de0f53c245634c89944c7a233bfb40cb.r2.dev/vtt/hefty_playlist.vtt
+          label="English subtitle"
+          kind="subtitles"
+          srclang="en-us"
+          default
+        />
+    </video>
 </div>
 <ul>
 	<li><a href="https://www.discogs.com/release/889544-radicalfashion-Odori">Radicalfashion - Opening</a></li>
@@ -51,20 +72,5 @@ li {
 
 </ul>
 
-<div>
-	<video width="800" height="200" style="background-color: black;" controls>
-        <source
-          src="https://pub-de0f53c245634c89944c7a233bfb40cb.r2.dev/Hefty.mp3"
-          type="audio/mp3"
-        />
-        <track
-          src="/deadlabels/media/hefty_playlist.vtt"
-          label="English subtitle"
-          kind="subtitles"
-          srclang="en-us"
-          default
-        />
-    </video>
-</div>
 </body>
 </html>

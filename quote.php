@@ -62,7 +62,6 @@
                 <a href="/">home</a>
                 <a href="gallery">gallery</a>
                 <a href="quote">quote</a>
-                <a href="pod">P.O.D</a>
             </div>
         </div> 
     </div>

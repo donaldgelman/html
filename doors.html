@@ -3,14 +3,7 @@
 <style>
 body {
 	background-color: #32383f;
-	color: white;
-}
-img {
-    
-    margin-right:20px;
-    margin-left:20px;
-    width: 65%;
-    height: 65%;
+	color: black;
 }
 #but {
      background:none;
@@ -79,7 +72,7 @@ myVideo.loop=false;
 </script>
 <div>
 	<ul>
-	<!--<li><button onclick="myVideo.play();">play</button><button onclick="myVideo.pause();">pause</button></li>--!>
+		<li><button onclick="playpause();">play / pause</button></li>
 		<li style="font-size:20px;">loop <button onclick="myVideo.loop=true">on</button> <button onclick="myVideo.loop=false">off</button></li>
 		<li style="font-size:20px;">filters  <button onclick="vids = mlms01_vids; shuffle(vids); loadVideo();">mlms01</button><button onclick="vids = txfs01_vids.concat(mlms01_vids, tps01_vids); shuffle(vids); loadVideo();">tv</button><button onclick="vids = txfs01_vids; shuffle(vids); loadVideo();">txfs01</button><button onclick="vids = tps01_vids; shuffle(vids); loadVideo();">tps01</button></li>
 	</ul>

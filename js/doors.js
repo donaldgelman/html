@@ -1,5 +1,14 @@
 vids = txfs01_vids.concat(mlms01_vids, tps01_vids);
 
+function playpause() {
+	if (myVideo.paused) {
+		myVideo.play()
+	}
+	else {
+		myVideo.pause()
+	}
+};
+
 document.addEventListener('keydown', function(event) {
 	    if (event.keyCode == 76 && myVideo.loop == false) {
 		    myVideo.loop=true;

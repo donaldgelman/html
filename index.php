@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 <head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <?php
 $dir = "media/bg/";
@@ -10,9 +11,12 @@ $bg = $images[mt_rand(0, count($images) - 1)];
 ?>
 
 <style>
+
 body {
   background-color:black;
+  font-family: "Lato", sans-serif;
 }
+
 .center {
   display: block;
   margin-left: auto;
@@ -20,24 +24,66 @@ body {
   color:black;
   /*width: 50%;*/
 }
-#bg {
-    background-image:url("<?php echo $bg ;?>");
-    background-size:500px;
-    background-color:black;
+
+.sidenav {
+  height: 100%;
+  width: 260px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: black;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.main {
+  margin-left: 160px; /* Same as the width of the sidenav */
+  font-size: 28px; /* Increased text to enable scrolling */
+  padding: 0px 10px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  color:black;
+  /*width: 50%;*/
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 </style>
 </head>
 <body>
-	 <div class="dropdown">
-		 <button class="dropbtn">>></button>
-  <div class="dropdown-content">
-    <a href="gallery">gallery</a>
-    <a href="quote">quote</a>
-    <a href="deadlabels">Dead Labels</a>
-    <a href="glitch">glitch</a>
-    <a href="doors">doors</a>
-  </div>
+
+<div class="sidenav">
+  <a href="/">/</a>
+  <a href="/deadlabels">deadlabels</a>
+  <a href="/doors">doors</a>
+  <a href="/gallery">gallery</a>
 </div>
+
+<div class="main">
+
+<h2>Sidebar</h2>
 <div><img src="<?php echo $bg ;?>" width="55%" class="center"/></div>
+</div>
+   
 </body>
-</html>
+</html> 
+

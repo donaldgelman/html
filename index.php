@@ -3,26 +3,12 @@
 <head>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
-<?php
-$dir = "media/bg/";
-$images = glob($dir."*.jpg");
-$bg = $images[mt_rand(0, count($images) - 1)];
-?>
-
+<script src="/js/imgs_array.js"></script>
 <style>
 
 body {
   background-color:black;
   font-family: "Lato", sans-serif;
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  color:black;
-  /*width: 50%;*/
 }
 
 .sidenav {
@@ -55,33 +41,35 @@ body {
   padding: 0px 10px;
 }
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  color:black;
-  /*width: 50%;*/
+#bg {
+  width:55%;
 }
 
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+
+@media only screen and (max-device-width: 480px) {
+  .sidenav {
+  height:100%;
+  width:160px;
+  }
+}
 </style>
 </head>
-<body>
+<body onload=def()>
 
 <div class="sidenav">
   <a href="/">/</a>
-  <a href="/deadlabels">deadlabels</a>
+  <a href="/deadlabels">dead labels</a>
   <a href="/doors">doors</a>
-  <a href="/gallery">gallery</a>
 </div>
 
 <div class="main">
 
 <h2>Sidebar</h2>
-<div><img src="<?php echo $bg ;?>" width="55%" class="center"/></div>
+<div><img id="bg" src= width="55%"/></div>
 </div>
    
 </body>

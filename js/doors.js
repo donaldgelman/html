@@ -1,4 +1,4 @@
-vids = txfs01_vids.concat(mlms01_vids, tps01_vids, tps02_vids);
+vids = doors_txfs01.concat(doors_mlms01, doors_mlms02, doors_tps01, doors_tps02, doors_tps03, doors_txfs02, doors_cinema, doors_tpfwwm);
 
 function playpause() {
 	if (myVideo.paused) {

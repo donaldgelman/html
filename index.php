@@ -64,11 +64,12 @@ body {
   <a href="/">/</a>
   <a href="/deadlabels">dead labels</a>
   <a href="/doors">doors</a>
+  <a href="/glitch">glitch</a>
 </div>
 
 <div class="main">
 
-<h2>Sidebar</h2>
+<h2></h2>
 <div><img id="bg" src= width="55%"/></div>
 </div>
    

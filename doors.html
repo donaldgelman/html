@@ -40,6 +40,9 @@ body {
 	padding: 15px;
 	color:#818181;
  }
+ #hider {
+	margin-left: 3%;
+ }
 </style>
 <head>
 	<script src="/js/doors_vids.js"></script>
@@ -51,7 +54,7 @@ body {
 	<a href="/index">/</a>
 </div>
 <div>
-    <video width="40%" id="myVideo" autoplay loop=false>
+    <video width="50%" id="myVideo" autoplay loop=false>
     <source src="" id="mp4Source" type="video/mp4">
     Your browser does not support the video tag.
 </video>
@@ -93,12 +96,28 @@ loadVideo();
 
 myVideo.loop=false;
 </script>
-<div>
+
+		<button id="hider" onclick="myFunction()">h i d e</button>
+<div id="instructions">
 	<ul>
 		<li><button onclick="playpause();">play / pause</button> spacebar </li>
 		<li style="font-size:20px;">loop <button onclick="myVideo.loop=true">on</button> <button onclick="myVideo.loop=false">off</button> l key </li>
-		<li style="font-size:20px;">filters  <button onclick="vids = mlms01_vids; shuffle(vids); loadVideo();">mlms01</button><button onclick="vids = txfs01_vids.concat(mlms01_vids, tps01_vids); shuffle(vids); loadVideo();">tv</button><button onclick="vids = txfs01_vids; shuffle(vids); loadVideo();">txfs01</button><button onclick="vids = tps01_vids.concat(tps02_vids, tpfwwm_vids); shuffle(vids); loadVideo();">tp</button><button onclick="vids = tps01_vids; shuffle(vids); loadVideo();">tps01</button><button onclick="vids = tps02_vids; shuffle(vids); loadVideo();">tps02</button></li>
+		<li style="font-size:20px;">filters  <button onclick="vids = doors_cinema.concat(doors_tpfwwm); shuffle(vids); loadVideo();">cinema</button><button onclick="vids = doors_mlms01.concat(doors_mlms02); shuffle(vids); loadVideo()">mlm</button><button onclick="vids = doors_tps01.concat(doors_tps02, doors_tpfwwm, doors_tps03); shuffle(vids); loadVideo();">tp</button><button onclick="vids = doors_txfs01.concat(doors_txfs02, doors_mlms01, doors_tps01, doors_tps02, doors_tps03); shuffle(vids); loadVideo();">tv</button><button onclick="vids = doors_txfs01.concat(doors_txfs02); shuffle(vids); loadVideo();">txf</button></li>
 	</ul>
 </div>
+<script>
+function myFunction() {
+  var x = document.getElementById("instructions");
+  var y = document.getElementById("hider");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+    y.style.color = "black";
+    y.style.border = "thin solid green";
+    y.style.backgroundColor = "black";
+  }
+}
+</script>
 </body>
 </html>

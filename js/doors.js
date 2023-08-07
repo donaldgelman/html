@@ -1,4 +1,4 @@
-vids = doors_txfs01.concat(doors_mlms01, doors_mlms02, doors_tps01, doors_tps02, doors_tps03, doors_txfs02, doors_cinema, doors_tpfwwm);
+var vids = doors_cinema.concat(doors_tpfwwm);
 
 function playpause() {
 	if (myVideo.paused) {
@@ -16,10 +16,10 @@ document.addEventListener('keydown', function(event) {
 	    else if (event.keyCode == 76 && myVideo.loop == true) {
 		    myVideo.loop=false;
   	    }
-	    else if (event.keyCode == 32 && myVideo.paused == true) {
+	    else if (event.keyCode == 80 && myVideo.paused == true) {
 		    myVideo.play()
 	    }
-	    else if (event.keyCode == 32 && myVideo.paused == false) {
+	    else if (event.keyCode == 80 && myVideo.paused == false) {
 		    myVideo.pause()
 	    }
 });

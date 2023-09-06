@@ -32,6 +32,7 @@ body {
  }
  video {
     position:center;
+    width:800px;
  }
  ul {
 	list-style-type:none;
@@ -44,81 +45,135 @@ body {
 	margin-left: 3%;
  }
 </style>
-<head>
-	<script src="/js/doors_vids.js"></script>
-	<script src="js/doors.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-</head>
-<body>
 <div class="topnav">
 	<a href="/index">/</a>
 </div>
-<div>
-    <video width="50%" id="myVideo" autoplay loop=false>
-    <source src="" id="mp4Source" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-</div>
-<script type="text/javascript">
-var count=1;
-var player=document.getElementById('myVideo');
-var mp4Vid = document.getElementById('mp4Source');
-player.addEventListener('ended',myHandler,false);
-var vids=doors_cinema 
-shuffle(vids);
-
-//function loadVideo()
-//{
-//    var video = document.getElementById('myVideo');
-//    //var mp4 = document.getElementById('mp4Source');
-//
-//    mp4Source.src=vids[0];
-//
-//    video.load();
-//    video.play();
-//}
-
-loadVideo();
-
-
-   function myHandler(e)
-   {
-
-      if(!e)
-      {
-         e = window.event;
-      }
-      count++;
-      $(mp4Vid).attr('src', vids[count]);
-      player.load();
-      player.play();
-   }
-
-myVideo.loop=false;
-</script>
-
-		<button id="hider" onclick="myFunction()">hide</button>
+<div id="videoContainer" style="display:inline-block"></div>
+<b id="output" style="vertical-align:top"></b>
 <div id="instructions">
 	<ul>
 		<li><button onclick="playpause();">play / pause</button> p key </li>
-		<li style="font-size:20px;">loop <button onclick="myVideo.loop=true">on</button> <button onclick="myVideo.loop=false">off</button> l key </li>
-		<li style="font-size:20px;">filters  <button onclick="vids = doors_cinema.concat(doors_txfs01, doors_txfs02, doors_txfs03, doors_txfs04, doors_txfs05, doors_txfftf, doors_mlms01, doors_mlms02, doors_tps01, doors_tps02, doors_tpfwwm, doors_tps03); shuffle(vids); loadVideo();">all</button><button onclick="vids = doors_cinema.concat(doors_tpfwwm, doors_txfftf); shuffle(vids); loadVideo();">cinema</button><button onclick="vids = doors_txfs01.concat(doors_txfs02, doors_txfs03, doors_txfs04, doors_txfs05, doors_txfs06, doors_txfs07, doors_txfs08, doors_txfs11, doors_mlms01, doors_mlms02, doors_tps01, doors_tps02, doors_tps03); shuffle(vids); loadVideo();">tv</button><button onclick="vids = doors_txfs01.concat(doors_txfs02, doors_txfs03, doors_txfs04, doors_txfs05, doors_txfftf, doors_txfs06, doors_txfs07, doors_txfs08, doors_txfs11); shuffle(vids); loadVideo();">txf</button></li>
-	</ul>
-	<!-- vids = doors_cinema.filter(element => element.includes('wax');--!>
+		<li style="font-size:20px;"><button onclick="looper()">loop on / off</button> l key </li>
 </div>
+<script src="/js/doors_vids.js"></script>
+<script src="/js/doors2.js"></script>
 <script>
-function myFunction() {
-  var x = document.getElementById("instructions");
-  var y = document.getElementById("hider");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-    y.style.color = "black";
-    y.style.border = "thin solid green";
-    y.style.backgroundColor = "black";
-  }
+//https://archive.ph/a8job
+var videoContainer = document.getElementById('videoContainer'),
+    output = document.getElementById('output'),
+    nextVideo,
+    videoObjects =
+    [
+        document.createElement('video'),
+        document.createElement('video')
+    ],
+    vidSources = doors_cinema.concat(doors_cinema2, doors_cinema3, doors_tpfwwm, doors_txfftf, doors_txfiwtb)
+    //random starting point
+    nextActiveVideo = Math.floor((Math.random() * vidSources.length));
+shuffle(vidSources);
+videoObjects[0].inx = 0; //set index
+videoObjects[1].inx = 1;
+
+initVideoElement(videoObjects[0]);
+initVideoElement(videoObjects[1]);
+
+videoObjects[0].autoplay = true;
+videoObjects[0].src = vidSources[nextActiveVideo];
+videoContainer.appendChild(videoObjects[0]);
+
+videoObjects[1].style.display = 'none';
+videoContainer.appendChild(videoObjects[1]);
+
+	document.addEventListener('keydown', function(event) {
+	    if (event.keyCode == 76 && videoObjects[0].loop == false) {
+		    videoObjects[0].loop=true;
+	    }
+	    else if (event.keyCode == 76 && videoObjects[0].loop == true) {
+		    videoObjects[0].loop=false;
+  	    }
+	    if (event.keyCode == 76 && videoObjects[1].loop == false) {
+		    videoObjects[1].loop=true;
+	    }
+	    else if (event.keyCode == 76 && videoObjects[1].loop == true) {
+		    videoObjects[1].loop=false;
+  	    }
+	    else if (event.keyCode == 80 && videoObjects[0].paused == false) {
+		    videoObjects[0].pause();
+	    }
+	    else if (event.keyCode == 80 && videoObjects[1].paused == false) {
+		    videoObjects[1].pause();
+	    }
+		else if (event.keyCode == 80 && videoObjects[0].style.display == 'block' && videoObjects[0].paused == true) {
+		    videoObjects[0].play();
+	    }
+		else if (event.keyCode == 80 && videoObjects[1].style.display == 'block' && videoObjects[1].paused == true) {
+		    videoObjects[1].play();
+	    }
+		else if (event.keyCode == 80 && !videoObjects[0].style.display && videoObjects[1].style.display == 'none') {
+		    videoObjects[0].play();
+	    }
+});
+function initVideoElement(video)
+{
+    video.playsinline = true;
+    video.muted = false;
+    video.preload = 'auto'; //but do not set autoplay, because it deletes preload
+
+    //loadedmetadata is wrong because if we use it then we get endless loop
+    video.onplaying = function(e)
+    {
+        //output.innerHTML = 'Current video source index: ' + nextActiveVideo;
+
+        //select next index. If is equal vidSources.length then it is 0
+        nextActiveVideo = ++nextActiveVideo % vidSources.length;
+
+        //replace the video elements against each other:
+        if(this.inx == 0)
+            nextVideo = videoObjects[1];
+        else
+            nextVideo = videoObjects[0];
+
+        nextVideo.src = vidSources[nextActiveVideo];
+        nextVideo.pause();
+    };
+
+    video.onended = function(e)
+    {
+        this.style.display = 'none';
+        nextVideo.style.display = 'block';
+        nextVideo.play();
+    };
+}
+
+function playpause() {
+	    if (videoObjects[0].paused == false) {
+		    videoObjects[0].pause();
+	    }
+	    else if (videoObjects[1].paused == false) {
+		    videoObjects[1].pause();
+	    }
+		else if (videoObjects[0].style.display == 'block' && videoObjects[0].paused == true) {
+		    videoObjects[0].play();
+	    }
+		else if (videoObjects[1].style.display == 'block' && videoObjects[1].paused == true) {
+		    videoObjects[1].play();
+	    }
+		else if (!videoObjects[0].style.display && videoObjects[1].style.display == 'none') {
+		    videoObjects[0].play();
+	    }
+}
+function looper() {
+	    if (videoObjects[0].loop == false) {
+		    videoObjects[0].loop=true;
+	    }
+	    else if (videoObjects[0].loop == true) {
+		    videoObjects[0].loop=false;
+  	    }
+	    if (videoObjects[1].loop == false) {
+		    videoObjects[1].loop=true;
+	    }
+	    else if (videoObjects[1].loop == true) {
+		    videoObjects[1].loop=false;
+            }
 }
 </script>
-</body>
-</html>

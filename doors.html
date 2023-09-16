@@ -32,7 +32,7 @@ body {
  }
  video {
     position:center;
-    width:800px;
+    width:1000px;
  }
  ul {
 	list-style-type:none;
@@ -52,8 +52,7 @@ body {
 <b id="output" style="vertical-align:top"></b>
 <div id="instructions">
 	<ul>
-		<li><button onclick="playpause();">play / pause</button> p key </li>
-		<li style="font-size:20px;"><button onclick="looper()">loop on / off</button> l key </li>
+	<li style="display:inline"><button onclick="playpause();">play / pause</button> p key </li><li style="display:inline"><button id="btn">filter</button><input type="text" id="filter" placeholder="filter, eg. 1983"></li><li style="display:inline"><button onclick="looper()">loop on / off</button> l key </li><!--<li style="display:inline"><button onclick="fullscreen()">fullscreen</button> f key </li>--!>
 </div>
 <script src="/js/doors_vids.js"></script>
 <script src="/js/doors2.js"></script>
@@ -67,7 +66,8 @@ var videoContainer = document.getElementById('videoContainer'),
         document.createElement('video'),
         document.createElement('video')
     ],
-    vidSources = doors_cinema.concat(doors_cinema2, doors_cinema3, doors_tpfwwm, doors_txfftf, doors_txfiwtb)
+    vidSourcesMaster = doors_cinema.concat(doors_cinema4, doors_tpfwwm, doors_txfftf, doors_txfiwtb, doors_cinema2);
+    vidSources = vidSourcesMaster;
     //random starting point
     nextActiveVideo = Math.floor((Math.random() * vidSources.length));
 shuffle(vidSources);
@@ -85,33 +85,48 @@ videoObjects[1].style.display = 'none';
 videoContainer.appendChild(videoObjects[1]);
 
 	document.addEventListener('keydown', function(event) {
-	    if (event.keyCode == 76 && videoObjects[0].loop == false) {
+	    if (event.keyCode == 76 && videoObjects[0].loop == false && document.activeElement.id !== 'filter') {
 		    videoObjects[0].loop=true;
 	    }
-	    else if (event.keyCode == 76 && videoObjects[0].loop == true) {
+	    else if (event.keyCode == 76 && videoObjects[0].loop == true && document.activeElement.id !== 'filter') {
 		    videoObjects[0].loop=false;
   	    }
-	    if (event.keyCode == 76 && videoObjects[1].loop == false) {
+	    if (event.keyCode == 76 && videoObjects[1].loop == false && document.activeElement.id !== 'filter') {
 		    videoObjects[1].loop=true;
 	    }
-	    else if (event.keyCode == 76 && videoObjects[1].loop == true) {
+	    else if (event.keyCode == 76 && videoObjects[1].loop == true && document.activeElement.id !== 'filter') {
 		    videoObjects[1].loop=false;
   	    }
-	    else if (event.keyCode == 80 && videoObjects[0].paused == false) {
+	    else if (event.keyCode == 80 && videoObjects[0].paused == false && document.activeElement.id !== 'filter') {
 		    videoObjects[0].pause();
 	    }
-	    else if (event.keyCode == 80 && videoObjects[1].paused == false) {
+	    else if (event.keyCode == 80 && videoObjects[1].paused == false && document.activeElement.id !== 'filter') {
 		    videoObjects[1].pause();
 	    }
-		else if (event.keyCode == 80 && videoObjects[0].style.display == 'block' && videoObjects[0].paused == true) {
+		else if (event.keyCode == 80 && videoObjects[0].style.display == 'block' && videoObjects[0].paused == true && document.activeElement.id !== 'filter') {
 		    videoObjects[0].play();
 	    }
-		else if (event.keyCode == 80 && videoObjects[1].style.display == 'block' && videoObjects[1].paused == true) {
+		else if (event.keyCode == 80 && videoObjects[1].style.display == 'block' && videoObjects[1].paused == true && document.activeElement.id !== 'filter') {
 		    videoObjects[1].play();
 	    }
-		else if (event.keyCode == 80 && !videoObjects[0].style.display && videoObjects[1].style.display == 'none') {
+		else if (event.keyCode == 80 && !videoObjects[0].style.display && videoObjects[1].style.display == 'none' && document.activeElement.id !== 'filter') {
 		    videoObjects[0].play();
 	    }
+	    else if (event.keyCode == 70 && videoObjects[0].style.display == 'block') {
+		    videoObjects[0].requestFullscreen();
+		    videoObjects[1].oncanplaythrough = function() {
+			videoObjects[1].requestFullscreen();
+		    }
+  	    }
+	    else if (event.keyCode == 70 && videoObjects[1].style.display == 'block') {
+		    videoObjects[1].requestFullscreen();
+		    videoObjects[0].oncanplaythrough = function() {
+			videoObjects[0].requestFullscreen();
+		    }
+  	    }
+	    //if (event.keyCode == 70 && videoObjects[1].loop == false) {
+	//	    videoObjects[1].loop=true;
+	  //  }
 });
 function initVideoElement(video)
 {
@@ -176,4 +191,57 @@ function looper() {
 		    videoObjects[1].loop=false;
             }
 }
+function fullscreen() {
+	    if (videoObjects[0].style.display == 'block') {
+		    videoObjects[0].requestFullscreen();
+		    videoObjects[1].playing = function() {
+			videoObjects[1].requestFullscreen();
+		    }
+  	    }
+	    else if (videoObjects[1].style.display == 'block') {
+		    videoObjects[1].requestFullscreen();
+		    videoObjects[0].playing = function() {
+			videoObjects[0].requestFullscreen();
+		    }
+  	    }
+	    else if (!videoObjects[0].style.display) {
+		    videoObjects[0].requestFullscreen();
+		    videoObjects[1].playing = function() {
+			videoObjects[1].requestFullscreen();
+		    }
+	    }
+}
+const btn= document.getElementById("btn");
+
+btn.addEventListener('click', function(){
+  var name = document.getElementById("filter").value;
+	name = name.split(/[ ,]+/);
+	if (name.length == 1) {
+		vidSources = vidSourcesMaster.filter(element => element.split('/').pop(-1).includes(name[0]));
+	}
+	else if (name.length == 2) {
+		vidSources = vidSourcesMaster.filter(element => element.split('/').pop(-1).includes(name[0]) || element.split('/').pop(-1).includes(name[1]));
+	}
+	else if (name.length == 3) {
+		vidSources = vidSourcesMaster.filter(element => element.split('/').pop(-1).includes(name[0]) || element.split('/').pop(-1).includes(name[1]) || element.split('/').pop(-1).includes(name[2]));
+	}
+	else if (name.length == 4) {
+		vidSources = vidSourcesMaster.filter(element => element.split('/').pop(-1).includes(name[0]) || element.split('/').pop(-1).includes(name[1]) || element.split('/').pop(-1).includes(name[2]) || element.split('/').pop(-1).includes(name[3]));
+	}
+	
+	shuffle(vidSources);
+	if (videoObjects[0].style.display =='block') {
+		videoObjects[0].src=vidSources[0];
+		videoObjects[0].load();
+	}
+	else if (videoObjects[1].style.display =='block') {
+		videoObjects[1].src=vidSources[0];
+		videoObjects[1].load();
+		videoObjects[1].play();
+	} 
+	else if (!videoObjects[0].style.display && videoObjects[1].style.display == 'none') {
+		videoObjects[0].src=vidSources[0];
+		videoObjects[0].load();
+	};
+});
 </script>
